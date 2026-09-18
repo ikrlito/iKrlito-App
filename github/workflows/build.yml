@@ -1,0 +1,20 @@
+name: Generar APK iKrlito
+on:
+  push:
+    branches: [ main, master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Convertir HTML a APK
+        uses: kimhuilim/html-to-apk-action@v1.0
+        with:
+          build-folder-path: './'
+          app-name: 'iKrlito Manager'
+          output-folder-path: 'apk/'
+      - name: Guardar APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: iKrlito-Manager-APK
+          path: apk/
